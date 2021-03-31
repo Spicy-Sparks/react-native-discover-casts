@@ -114,6 +114,7 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
         promise.reject(Error("Could not connect to device"))
 
       mRouter!!.selectRoute(route!!)
+      promise.resolve(true)
     }
   }
 
@@ -133,4 +134,3 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
   override fun onHostPause() {}
 
 }
-
