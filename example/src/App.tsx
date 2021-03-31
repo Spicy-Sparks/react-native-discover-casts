@@ -8,11 +8,13 @@ export default function App() {
 
   React.useEffect(() => {
     (async () => {
-      const discoveryManager = GoogleCast.getDiscoveryManager()
+      /*const discoveryManager = GoogleCast.getDiscoveryManager()
       await discoveryManager.startDiscovery()
 
-      const devices = await DiscoverCasts.getAvailableDevices()
-      console.log(devices)
+      setTimeout(async () => {
+        const devices = await DiscoverCasts.getAvailableDevices()
+        console.log(devices)
+      }, 10000);*/
 
       DiscoverCasts.addEventListener("onRouteAdded", (data) => console.log("ad", data))
       DiscoverCasts.addEventListener("onRouteChanged", (data) => console.log("ch", data))
