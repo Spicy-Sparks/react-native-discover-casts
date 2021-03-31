@@ -14,18 +14,11 @@ export default function App() {
         await discoveryManager.startDiscovery()
       }
 
-      setTimeout(async () => {
+      const devices = await DiscoverCasts.getAvailableDevices()
+      console.log(devices)
 
-        const devices = await DiscoverCasts.getAvailableDevices()
-        console.log(devices)
-
-        const connect = await DiscoverCasts.connectToDevice("75aaffceb8abc0987e4a4cc220d4bd1c")
-        console.log(connect)
-
-      }, Platform.select({
-        ios: 10 * 1000,
-        default: 100
-      }));
+      const connect = await DiscoverCasts.connectToDevice("839bb6a00b0461218790585aeb34e7ad")
+      console.log(connect)
 
       DiscoverCasts.addEventListener("onRouteAdded", (data) => console.log("ad", data))
       DiscoverCasts.addEventListener("onRouteChanged", (data) => console.log("ch", data))

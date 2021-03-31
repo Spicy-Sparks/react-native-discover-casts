@@ -2,12 +2,9 @@
 #import <React/RCTEventEmitter.h>
 #import <GoogleCast/GoogleCast.h>
 
-static NSString *const CAST_ROUTE_ADDED =
-@"onRouteAdded";
-static NSString *const CAST_ROUTE_CHANGED =
-@"onRouteChanged";
-static NSString *const CAST_ROUTE_REMOVED =
-@"onRouteRemoved";
+static NSString *const CAST_ROUTE_ADDED = @"onRouteAdded";
+static NSString *const CAST_ROUTE_CHANGED = @"onRouteChanged";
+static NSString *const CAST_ROUTE_REMOVED = @"onRouteRemoved";
 
 @interface DiscoverCasts : RCTEventEmitter <RCTBridgeModule, GCKDiscoveryManagerListener>
 

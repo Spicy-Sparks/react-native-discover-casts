@@ -195,7 +195,7 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
-  - react-native-discover-casts (0.1.0):
+  - react-native-discover-casts (0.1.1):
     - google-cast-sdk-no-bluetooth
     - React
     - React-Core
@@ -390,8 +390,8 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-discover-casts: 6f6d1d7c9947ba5e0471f30d2a4838267ec9899a
-  react-native-google-cast: 8edc149baf13eee0dd2acf1583ed1412c00fd253
+  react-native-discover-casts: e3dc1d071e28e047907a2d60f1de041a30839943
+  react-native-google-cast: 9ac855d7bd79fa257fdb4f5f48574310d92c1fb4
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
