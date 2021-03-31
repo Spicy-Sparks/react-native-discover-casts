@@ -15,6 +15,7 @@ type DeviceType = {
 
 type DiscoverCastsType = {
   getAvailableDevices(): Promise<Array<DeviceType>>;
+  connectToDevice(deviceId: string): Promise<void>;
   addEventListener(event: string, listener: (event: any) => any): EmitterSubscription;
   removeEventListener(listener: EmitterSubscription): void;
   removeAllListeners(event: string): void;

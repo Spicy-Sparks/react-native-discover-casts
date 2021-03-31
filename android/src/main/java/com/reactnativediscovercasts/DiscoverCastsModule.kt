@@ -5,9 +5,11 @@ import androidx.mediarouter.media.MediaRouter
 import androidx.mediarouter.media.MediaRouter.RouteInfo
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
+import com.google.android.gms.cast.Cast
 import com.google.android.gms.cast.CastDevice
 import com.google.android.gms.cast.CastMediaControlIntent
 import com.google.android.gms.cast.CastMediaControlIntent.DEFAULT_MEDIA_RECEIVER_APPLICATION_ID
+import java.lang.Error
 
 
 public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactContextBaseJavaModule(reactContext), LifecycleEventListener  {
@@ -96,6 +98,22 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
 
       promise.resolve(payload)
     }
+  }
+
+  @ReactMethod
+  fun connectToDevice(deviceId: String, promise: Promise) {
+    val route: RouteInfo? = mRouter!!.getRoutes().reduce {
+      final, route ->
+        val device = CastDevice.getFromBundle(route.extras)
+        if (device.deviceId == deviceId)
+          route
+        else final
+    }
+
+    if(route == null)
+      promise.reject(Error("Could not connect to device"))
+
+    mRouter!!.selectRoute(route!!)
   }
 
   override fun onHostResume() {
