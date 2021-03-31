@@ -16,11 +16,11 @@ RCT_EXPORT_MODULE()
   return self;
 }
 
-- (void)dealloc {
+/*- (void)dealloc {
     dispatch_async(dispatch_get_main_queue(), ^{
         [GCKCastContext.sharedInstance.discoveryManager removeListener:self];
     });
-}
+}*/
 
 + (BOOL)requiresMainQueueSetup {
   return NO;
@@ -100,19 +100,19 @@ RCT_EXPORT_METHOD(connectToDevice:(NSString*) deviceId
             if(deviceTmp != nil && [deviceTmp.deviceID isEqualToString:deviceId])
                 device = deviceTmp;
         }
-        
+
         if(device == nil) {
             resolve([NSNumber numberWithBool:false]);
             return;
         }
-        
+
         BOOL status = [GCKCastContext.sharedInstance.sessionManager startSessionWithDevice:device];
-        
+
         if(!status) {
             resolve([NSNumber numberWithBool:false]);
             return;
         }
-            
+
         resolve([NSNumber numberWithBool:true]);
     });
 }
