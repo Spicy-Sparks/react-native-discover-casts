@@ -4,8 +4,17 @@ import {
   NativeModules,
 } from 'react-native';
 
+type DeviceType = {
+  friendlyName: string,
+  deviceId: string,
+  deviceVersion: string,
+  isOnLocalNetwork: string,
+  modelName: string,
+  ipAddress: string,
+}
+
 type DiscoverCastsType = {
-  getAvailableDevices(): void;
+  getAvailableDevices(): Promise<Array<DeviceType>>;
   addEventListener(event: string, listener: (event: any) => any): EmitterSubscription;
   removeEventListener(listener: EmitterSubscription): void;
   removeAllListeners(event: string): void;
