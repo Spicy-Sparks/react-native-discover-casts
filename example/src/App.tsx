@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Platform } from 'react-native';
 import DiscoverCasts from 'react-native-discover-casts';
 import GoogleCast, { CastButton } from 'react-native-google-cast';
 
@@ -8,13 +8,24 @@ export default function App() {
 
   React.useEffect(() => {
     (async () => {
-      /*const discoveryManager = GoogleCast.getDiscoveryManager()
-      await discoveryManager.startDiscovery()
+
+      if(Platform.OS === "ios") {
+        const discoveryManager = GoogleCast.getDiscoveryManager()
+        await discoveryManager.startDiscovery()
+      }
 
       setTimeout(async () => {
+
         const devices = await DiscoverCasts.getAvailableDevices()
         console.log(devices)
-      }, 10000);*/
+
+        const connect = await DiscoverCasts.connectToDevice("75aaffceb8abc0987e4a4cc220d4bd1c")
+        console.log(connect)
+
+      }, Platform.select({
+        ios: 10 * 1000,
+        default: 100
+      }));
 
       DiscoverCasts.addEventListener("onRouteAdded", (data) => console.log("ad", data))
       DiscoverCasts.addEventListener("onRouteChanged", (data) => console.log("ch", data))

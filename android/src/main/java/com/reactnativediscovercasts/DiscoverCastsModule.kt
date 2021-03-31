@@ -102,18 +102,19 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
 
   @ReactMethod
   fun connectToDevice(deviceId: String, promise: Promise) {
-    val route: RouteInfo? = mRouter!!.getRoutes().reduce {
-      final, route ->
+    reactContext.runOnUiQueueThread {
+      val route: RouteInfo? = mRouter!!.getRoutes().reduce { final, route ->
         val device = CastDevice.getFromBundle(route.extras)
         if (device.deviceId == deviceId)
           route
         else final
+      }
+
+      if (route == null)
+        promise.reject(Error("Could not connect to device"))
+
+      mRouter!!.selectRoute(route!!)
     }
-
-    if(route == null)
-      promise.reject(Error("Could not connect to device"))
-
-    mRouter!!.selectRoute(route!!)
   }
 
   override fun onHostResume() {
