@@ -28,19 +28,19 @@ RCT_EXPORT_MODULE()
 }
 
 - (void)didInsertDevice:(GCKDevice *)device atIndex:(NSUInteger)index{
-    
+
 }
 
 - (void)didRemoveDeviceAtIndex:(NSUInteger)index{
-    
+
 }
 
 - (void)didUpdateDevice:(GCKDevice *)device atIndex:(NSUInteger)index{
-    
+
 }
 
 - (void)didUpdateDevice:(GCKDevice *)device atIndex:(NSUInteger)index andMoveToIndex:(NSUInteger)newIndex{
-    
+
 }
 
 
