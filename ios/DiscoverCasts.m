@@ -117,4 +117,29 @@ RCT_EXPORT_METHOD(connectToDevice:(NSString*) deviceId
     });
 }
 
+RCT_EXPORT_METHOD(getAdditionalDeviceInfos:(NSString*) deviceId
+                 withConnectToDeviceResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GCKDevice *device;
+        NSUInteger count = GCKCastContext.sharedInstance.discoveryManager.deviceCount;
+
+        for (int i = 0; i < count; i++) {
+            GCKDevice *deviceTmp = [GCKCastContext.sharedInstance.discoveryManager deviceAtIndex:i];
+            if(deviceTmp != nil && [deviceTmp.deviceID isEqualToString:deviceId])
+                device = deviceTmp;
+        }
+
+        if(device == nil) {
+            resolve([NSNumber numberWithBool:false]);
+            return;
+        }
+
+        resolve(@{
+            @"deviceType": [NSNumber numberWithInt:device.type]
+        });
+    });
+}
+
 @end

@@ -110,11 +110,35 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
         else final
       }
 
-      if (route == null)
+      if (route == null) {
         promise.reject(Error("Could not connect to device"))
+        return@runOnUiQueueThread
+      }
 
-      mRouter!!.selectRoute(route!!)
+      mRouter!!.selectRoute(route)
       promise.resolve(true)
+    }
+  }
+
+  @ReactMethod
+  fun getAdditionalDeviceInfos(deviceId: String, promise: Promise) {
+    reactContext.runOnUiQueueThread {
+      val route: RouteInfo? = mRouter!!.getRoutes().reduce { final, route ->
+        val device = CastDevice.getFromBundle(route.extras)
+        if (device.deviceId == deviceId)
+          route
+        else final
+      }
+
+      if (route == null) {
+        promise.reject(Error("Could not connect to device"))
+        return@runOnUiQueueThread
+      }
+
+      val payload = Arguments.createMap()
+      payload.putInt("deviceType", route.deviceType)
+
+      promise.resolve(payload)
     }
   }
 

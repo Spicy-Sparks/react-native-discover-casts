@@ -13,9 +13,14 @@ type DeviceType = {
   ipAddress: string,
 }
 
+type DeviceAdditionalType = {
+  deviceType: number
+}
+
 type DiscoverCastsType = {
   getAvailableDevices(): Promise<Array<DeviceType>>;
   connectToDevice(deviceId: string): Promise<void>;
+  getAdditionalDeviceInfos(deviceId: string): Promise<DeviceAdditionalType>;
   addEventListener(event: string, listener: (event: any) => any): EmitterSubscription;
   removeEventListener(listener: EmitterSubscription): void;
   removeAllListeners(event: string): void;
