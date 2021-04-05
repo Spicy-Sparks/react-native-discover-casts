@@ -105,7 +105,7 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
     reactContext.runOnUiQueueThread {
       val route: RouteInfo? = mRouter!!.getRoutes().reduce { final, route ->
         val device = CastDevice.getFromBundle(route.extras)
-        if (device.deviceId == deviceId)
+        if (device != null && device.deviceId == deviceId)
           route
         else final
       }
@@ -125,7 +125,7 @@ public class DiscoverCastsModule(reactContext: ReactApplicationContext): ReactCo
     reactContext.runOnUiQueueThread {
       val route: RouteInfo? = mRouter!!.getRoutes().reduce { final, route ->
         val device = CastDevice.getFromBundle(route.extras)
-        if (device.deviceId == deviceId)
+        if (device != null && device.deviceId == deviceId)
           route
         else final
       }
