@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.dependency "React-Core"
 
-  s.dependency 'google-cast-sdk-no-bluetooth'
+  s.dependency 'google-cast-sdk'
 
   s.dependency 'React'
 end
