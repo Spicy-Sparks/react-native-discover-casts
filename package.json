@@ -1,6 +1,6 @@
 {
   "name": "react-native-discover-casts",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Discover and connect to devices",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
