@@ -54,15 +54,18 @@ RCT_EXPORT_MODULE()
 }
 
 - (void)didInsertDevice:(GCKDevice *)device atIndex:(NSUInteger)index{
-    [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
+    if(device != nil)
+        [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
 }
 
 - (void)didRemoveDevice:(GCKDevice *)device atIndex:(NSUInteger)index{
-    [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
+    if(device != nil)
+        [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
 }
 
 - (void)didUpdateDevice:(GCKDevice *)device atIndex:(NSUInteger)index{
-    [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
+    if(device != nil)
+        [self sendEventWithName:CAST_ROUTE_ADDED body:[self mapDevice:device]];
 }
 
 /* - (void)didUpdateDeviceList:(GCKDevice *)device atIndex:(NSUInteger)index{
