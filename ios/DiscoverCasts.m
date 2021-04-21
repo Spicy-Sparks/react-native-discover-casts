@@ -53,7 +53,7 @@ RCT_EXPORT_MODULE()
         @"deviceVersion": [self stringOrEmpty:device.deviceVersion],
         @"isOnLocalNetwork": [NSNumber numberWithBool:device.isOnLocalNetwork],
         @"modelName": [self stringOrEmpty:device.modelName],
-        @"ipAddress": [self stringOrEmpty:device.networkAddress.ipAddress],
+        @"ipAddress": [self stringOrEmpty:(device.networkAddress != nil ? device.networkAddress.ipAddress : @"")],
     };
 }
 
