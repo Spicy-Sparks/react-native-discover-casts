@@ -42,14 +42,18 @@ RCT_EXPORT_MODULE()
   ];
 }
 
+- (NSString *)stringOrEmpty:(NSString *)string {
+  return string ? string : @"";
+}
+
 - (id) mapDevice:(GCKDevice *)device {
     return @{
-        @"friendlyName": device.friendlyName,
-        @"deviceId": (NSString *)device.deviceID,
-        @"deviceVersion": device.deviceVersion,
-        @"isOnLocalNetwork":[NSNumber numberWithBool:device.isOnLocalNetwork],
-        @"modelName": device.modelName,
-        @"ipAddress": device.networkAddress,
+        @"friendlyName": [self stringOrEmpty:device.friendlyName],
+        @"deviceId": [self stringOrEmpty:(NSString *)device.deviceID],
+        @"deviceVersion": [self stringOrEmpty:device.deviceVersion],
+        @"isOnLocalNetwork": [NSNumber numberWithBool:device.isOnLocalNetwork],
+        @"modelName": [self stringOrEmpty:device.modelName],
+        @"ipAddress": [self stringOrEmpty:device.networkAddress.ipAddress],
     };
 }
 
